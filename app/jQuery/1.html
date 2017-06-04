@@ -1,0 +1,42 @@
+<html>
+<head>
+<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+//1
+$("button#button1").click(function(){
+   $("p#test1").hide();
+});
+//2
+$("button#button2").click(function(){
+   $("div#div1").children().fadeOut(1000);
+});
+//3
+$("button#button3").click(function(){
+   //$("p#p1").html("new!");
+   $("p#p1").append("<p>this is add p</p>")
+});
+
+
+});
+</script>
+</head>
+
+<body>
+<p>This is a paragraph.</p>
+<p class="test">This is another paragraph.</p>
+<p id="test1">This is another paragraph.</p>
+<button type="button" id="button1">Click me</button>
+
+
+<div id="div1" style="width:80px;height:100px;background-color:red;">
+<div id="div2" style="width:80px;height:80px;background-color:blue;"></div>
+</div>
+<button type="button" id="button2">Click me2</button>
+
+
+<p id="p1">this is p</p>
+<button type="button" id="button3">Click me3</button>
+
+</body>
+</html>

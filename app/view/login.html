@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>欢迎登陆</title>
+<h1>登陆界面</h1>
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+  <form>
+     <input type="text" name="name"  ng-model="username" placeholder="请输入用户名"></input>
+     <input type="password" name="password" ng-model="userpassword" placeholder="请输入密码"></input>
+
+     <button type="submit" > 登 陆 </button>
+  </form>
+    
+    <h1>this is resolve value</h1>
+    <h1>{{name1}}</h1>
+   
+    <button  type="submit" ng-click="ceshi()">测 试</button>
+
+</div>
+
+
+<div ng-controller="personCtrl">
+
+   <button ng-click="toggle()">隐藏/显示</button>
+
+   <p ng-hide="myVar">
+   名: <input type="text" ng-model="firstName"><br>
+   姓名: <input type="text" ng-model="lastName"><br>
+   <h1>{{name1}}</h1>
+   <br>
+   Full Name: {{firstName + " " + lastName}}
+   </p>
+
+</div>
+
+
+
+</body>
+
+</html>

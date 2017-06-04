@@ -1,0 +1,113 @@
+<html>
+    <head>
+    	<meta charset="utf-8">
+        <title>AngularJS</title>
+    </head>
+    <body ng-app='routingDemoApp'>
+     
+         
+        <div ui-view=""></div> 
+        
+
+        <script src="/js/angular-route.min.js"></script>
+        <script src="/js/angular.min.js"></script>
+        <script src="/js/angular-ui-router.js"></script>
+
+        <script src="/js/ocLazyLoad.min.js"></script>
+        <script src="/js/config.lazyload.js"></script>
+        <script src="/js/config.js"></script>
+
+
+
+        <script>
+            angular.module('routingDemoApp',['ui.router','oc.lazyLoad'])
+            .config(['$urlRouterProvider','$stateProvider', function($urlRouterProvider,$stateProvider){
+                $urlRouterProvider
+                 .otherwise('/access/login');
+
+                $stateProvider
+                 .state('access', {
+                    url: '/access',
+                    template: '<div ui-view ></div>'
+                    //template: '11111'
+                })
+
+                .state('access.login', {
+                    url: '/login',
+                    templateUrl: '/view/login.html',
+                    //resolve: false
+                  // resolve: load(['/view/login.js'])
+                    resolve: {
+                         user: ['$ocLazyLoad', function($ocLazyLoad) {
+                         return  
+                         {
+                            $ocLazyLoad.load('/view/login.js')
+                         }
+                     }]} 
+                                         
+                })
+
+//start
+function load(srcs, callback) {
+                return {
+                    deps: ['$ocLazyLoad', '$q',
+                        function($ocLazyLoad, $q) {
+                            var deferred = $q.defer();  //通过$q服务注册一个延迟对象 deferred
+                            var promise = false;
+                            srcs = angular.isArray(srcs) ? srcs : srcs.split(/\s+/);
+                            if(!promise) {
+                                promise = deferred.promise;//通过deferred延迟对象，可以得到一个承诺promise，而promise会返回当前任务的完成结果
+                            }
+                            angular.forEach(srcs, function(src) {
+                                //console.log(src);
+                                promise = promise.then(function() {
+                                    if(JQ_CONFIG[src]) {
+                                        return $ocLazyLoad.load(JQ_CONFIG[src]);//动态加载其他依赖
+                                    }
+                                    //if(src.substr(src.length-3, 3) === '.js') {
+                                    //    name = src + '?v=' + OpsConstant.O_VERSION;
+                                    //} else {
+                                    name = src;
+                                    //}
+                                    return $ocLazyLoad.load(name);
+                                });
+                            });
+                            deferred.resolve();
+                            //promise=true;//另加
+                            return callback ? promise.then(function() {
+                                return callback();
+                            }) : promise;
+                        }//function  end
+                    ]
+                }
+            }//end
+
+
+
+            }])//config end
+
+
+
+            .controller('myCtrl', function($scope) {
+                 $scope.name1="baolei";
+             });
+
+//             .controller('personCtrl', function($scope) {
+//                  $scope.firstName = "John",
+//                  $scope.lastName = "Doe",
+//                  $scope.myVar = false,
+//                  $scope.toggle = function() {
+//                  $scope.myVar = !$scope.myVar;
+//                };
+
+
+//               });
+
+
+
+
+        </script>
+     
+     
+    </body>
+</html>

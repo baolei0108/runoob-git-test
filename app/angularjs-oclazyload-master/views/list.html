@@ -1,0 +1,44 @@
+<div ng-controller="listCtrl">
+    <h2>this is views/list.html</h2>
+    <h2>systemId is:{{id}}</h2>
+
+    <div >
+		 <select name="versionId" ng-model="versionId"  ng-change="getModeList()" validator="required">
+		 <option value="">--请选择--</option>
+         <option value="{{x.id}}" ng-selected="versionId == x.id" ng-repeat="x in versionListData" ng-bind="x.version" ></option>
+         </select>
+    </div>
+    
+    <!-- <div>
+		 <select ng-model="moduleId" >
+		 <option value="">--请选择--</option>
+         <option value="{{x.id}}" ng-selected="versionId == x.id" ng-repeat="x in moduleListData" ng-bind="x.moduleName"></option>
+         </select>
+	</div> -->
+
+
+    <div>
+         <select ng-model="moduleId" >
+         <option value="">--请选择--</option>
+         <option  ng-selected="versionId == x.id" ng-repeat="x in moduleListData" ng-bind="x.moduleName"></option>
+         </select>
+    </div>
+
+
+	<!-- <h3>versionListData值 : {{versionListData}}</h3>
+    <h3>casscade值 : {{casscade}}</h3> -->
+    <h3>moduleListData值 ： {{moduleListData}} </h3>
+    <h3>hello: {{hello}}</h3>
+    <!--<h3>casscade值: {{casscade}}</h3> -->
+
+    <div runoob-Directive></div> 
+    
+    <div>
+         <h3>测试注入模块: {{hello2}}</h3>
+         <h3>测试app.controller factory2*3= {{ceshi2}}</h3>
+         <h3>测试service: {{ceshi}}</h3>
+         <h3>测试调用api-data: {{defaultExecute.taskCost}}</h3>
+    </div>
+
+</div>
+

@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "message": "查询任务记录详细成功",
+  "data": {
+    "ctId": null,
+    "taskCost": 5960.0,   
+    "gmtCreate": "2016-08-24 14:20:36",
+    "createrId": "admin",
+    "mode": "WEB",
+    "recordName": "作业测试45445",
+    "tenantId": 0,
+    "startTime": "2016-08-24 14:20:29",
+    "id": 1,
+    "stopTime": "2016-08-24 15:59:49",
+    "taskId": 6
+  },
+  "status": null,
+  "solution": null
+}
